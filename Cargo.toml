@@ -1,0 +1,22 @@
+[workspace]
+resolver = "2"
+members = [
+    "src/drawdance/rust",
+    "src/tools/dprectool",
+    "src/tools/drawpile-cmd",
+    "src/tools/drawpile-timelapse",
+]
+
+[workspace.package]
+version = "2.3.2-pre"
+publish = false
+edition = "2021"
+license = "GPL-3.0-or-later"
+
+[profile.relwithdebinfo]
+inherits = "release"
+debug = true
+
+[profile.minsizerel]
+inherits = "release"
+opt-level = "s"

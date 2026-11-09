@@ -1,0 +1,82 @@
+begin testing
+
+-- initial metadata
+dpix: 72
+dpiy: 72
+framerate: 24
+frame_count: 24
+
+-> DP_MSG_UNDO_POINT ok - 0 error(s)
+-> DP_MSG_SET_METADATA_INT ok - 0 error(s)
+
+-- set dpix to 1024
+dpix: 1024
+dpiy: 72
+framerate: 24
+frame_count: 24
+
+-> DP_MSG_UNDO_POINT ok - 0 error(s)
+-> DP_MSG_SET_METADATA_INT ok - 0 error(s)
+
+-- set dpiy to 99999
+dpix: 1024
+dpiy: 99999
+framerate: 24
+frame_count: 24
+
+-> DP_MSG_UNDO_POINT ok - 0 error(s)
+-> DP_MSG_SET_METADATA_INT ok - 0 error(s)
+
+-- set framerate to 60
+dpix: 1024
+dpiy: 99999
+framerate: 60
+frame_count: 24
+
+-> DP_MSG_UNDO_POINT ok - 0 error(s)
+-> DP_MSG_SET_METADATA_INT ok - 0 error(s)
+
+-- set frame count of 99
+dpix: 1024
+dpiy: 99999
+framerate: 60
+frame_count: 99
+
+-> DP_MSG_UNDO_POINT ok - 0 error(s)
+-> DP_MSG_SET_METADATA_INT ok - 0 error(s)
+-> DP_MSG_SET_METADATA_INT ok - 0 error(s)
+-> DP_MSG_SET_METADATA_INT ok - 0 error(s)
+-> DP_MSG_SET_METADATA_INT ok - 0 error(s)
+
+-- set all metadata at once
+dpix: 96
+dpiy: 96
+framerate: 120
+frame_count: 1
+
+-> DP_MSG_UNDO ok - 0 error(s)
+
+-- undo metadata settage
+dpix: 1024
+dpiy: 99999
+framerate: 60
+frame_count: 99
+
+-> DP_MSG_UNDO ok - 0 error(s)
+
+-- redo metadata settage
+dpix: 96
+dpiy: 96
+framerate: 120
+frame_count: 1
+
+-> DP_MSG_UNDO_POINT ok - 0 error(s)
+-> DP_MSG_SET_METADATA_INT fail - 1 error(s): Set metadata int: unknown field 255
+
+-- setting invalid int metadata changes nothing
+dpix: 96
+dpiy: 96
+framerate: 120
+frame_count: 1
+
+done testing
